@@ -2,197 +2,247 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product Filter UI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Product Filter UI</title>
+
+  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
     }
 
-    body {
-      background: linear-gradient(135deg, #eef2ff, #fdf2f8);
-      min-height: 100vh;
-      padding: 40px 20px;
-      color: #1e293b;
+    body{
+      min-height:100vh;
+      background:linear-gradient(135deg,#0f172a,#1e293b);
+      padding:40px 20px;
+      color:white;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
+    .container{
+      max-width:1300px;
+      margin:auto;
     }
 
-    .title {
-      text-align: center;
-      margin-bottom: 35px;
+    .heading{
+      text-align:center;
+      margin-bottom:40px;
     }
 
-    .title h1 {
-      font-size: 3rem;
-      color: #4338ca;
-      margin-bottom: 10px;
+    .heading h1{
+      font-size:50px;
+      font-weight:700;
+      margin-bottom:10px;
+      background:linear-gradient(to right,#38bdf8,#818cf8);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
     }
 
-    .title p {
-      color: #64748b;
-      font-size: 1rem;
+    .heading p{
+      color:#cbd5e1;
+      font-size:17px;
     }
 
-    .filter-section {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 35px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    /* FILTER SECTION */
+
+    .filter-section{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+      margin-bottom:40px;
+      padding:25px;
+      border-radius:25px;
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(15px);
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 8px 25px rgba(0,0,0,0.3);
     }
 
-    .search-box {
-      flex: 1;
-      min-width: 250px;
-      position: relative;
+    .search-box{
+      flex:1;
+      min-width:260px;
+      position:relative;
     }
 
-    .search-box input {
-      width: 100%;
-      padding: 14px 18px;
-      border-radius: 12px;
-      border: none;
-      outline: none;
-      font-size: 1rem;
-      background: #fff;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    .search-box input{
+      width:100%;
+      padding:15px 20px;
+      border:none;
+      outline:none;
+      border-radius:15px;
+      background:rgba(255,255,255,0.1);
+      color:white;
+      font-size:16px;
+      transition:0.3s;
     }
 
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .search-box input::placeholder{
+      color:#cbd5e1;
     }
 
-    .filter-btn {
-      border: none;
-      padding: 12px 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      background: white;
-      color: #334155;
-      font-weight: 500;
-      transition: 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    .search-box input:focus{
+      background:rgba(255,255,255,0.15);
+      box-shadow:0 0 10px #38bdf8;
+    }
+
+    .buttons{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .filter-btn{
+      padding:12px 22px;
+      border:none;
+      border-radius:50px;
+      background:rgba(255,255,255,0.1);
+      color:white;
+      cursor:pointer;
+      transition:0.3s;
+      font-weight:500;
+      font-size:15px;
     }
 
     .filter-btn:hover,
-    .filter-btn.active {
-      background: #4338ca;
-      color: white;
-      transform: translateY(-2px);
+    .filter-btn.active{
+      background:linear-gradient(to right,#38bdf8,#818cf8);
+      transform:translateY(-2px);
+      box-shadow:0 5px 15px rgba(56,189,248,0.4);
     }
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
+    /* PRODUCTS */
+
+    .products{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
     }
 
-    .card {
-      background: rgba(255,255,255,0.75);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: 0.3s ease;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    .card{
+      background:rgba(255,255,255,0.08);
+      border-radius:25px;
+      overflow:hidden;
+      backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,0.08);
+      transition:0.4s;
+      position:relative;
     }
 
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    .card:hover{
+      transform:translateY(-10px) scale(1.02);
+      box-shadow:0 15px 30px rgba(0,0,0,0.4);
     }
 
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
+    .card img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
     }
 
-    .card-content {
-      padding: 18px;
+    .card-content{
+      padding:22px;
     }
 
-    .category {
-      display: inline-block;
-      padding: 5px 12px;
-      background: #e0e7ff;
-      color: #4338ca;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      margin-bottom: 10px;
-      font-weight: 600;
+    .category{
+      display:inline-block;
+      padding:7px 16px;
+      border-radius:50px;
+      background:linear-gradient(to right,#38bdf8,#818cf8);
+      font-size:13px;
+      margin-bottom:15px;
+      font-weight:500;
     }
 
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
+    .card-content h3{
+      font-size:24px;
+      margin-bottom:10px;
     }
 
-    .price {
-      color: #0f172a;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 10px;
+    .card-content p{
+      color:#cbd5e1;
+      font-size:14px;
+      line-height:1.6;
+      margin-bottom:18px;
     }
 
-    .desc {
-      color: #64748b;
-      font-size: 0.9rem;
-      line-height: 1.5;
+    .bottom{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
 
-    .no-result {
-      text-align: center;
-      grid-column: 1/-1;
-      font-size: 1.2rem;
-      color: #64748b;
-      padding: 40px 0;
+    .price{
+      font-size:24px;
+      font-weight:700;
+      color:#38bdf8;
     }
 
-    @media (max-width: 768px) {
-      .title h1 {
-        font-size: 2.2rem;
+    .buy-btn{
+      padding:10px 18px;
+      border:none;
+      border-radius:12px;
+      background:white;
+      color:#111827;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .buy-btn:hover{
+      background:#38bdf8;
+      color:white;
+    }
+
+    .no-product{
+      text-align:center;
+      margin-top:50px;
+      font-size:22px;
+      color:#cbd5e1;
+      display:none;
+    }
+
+    @media(max-width:768px){
+
+      .heading h1{
+        font-size:38px;
       }
 
-      .filter-section {
-        flex-direction: column;
-        align-items: stretch;
+      .filter-section{
+        flex-direction:column;
+        align-items:stretch;
       }
 
-      .buttons {
-        justify-content: center;
+      .buttons{
+        justify-content:center;
       }
+
     }
+
   </style>
 </head>
+
 <body>
 
   <div class="container">
 
-    <div class="title">
+    <!-- HEADING -->
+
+    <div class="heading">
       <h1>Product Filter UI</h1>
-      <p>Search and filter products by category with a modern responsive design.</p>
+      <!-- <p>Search and filter products with modern glassmorphism design</p> -->
     </div>
 
+    <!-- FILTERS -->
+
     <div class="filter-section">
+
       <div class="search-box">
         <input type="text" id="searchInput" placeholder="Search products...">
       </div>
@@ -203,114 +253,172 @@
         <button class="filter-btn" data-category="Fashion">Fashion</button>
         <button class="filter-btn" data-category="Shoes">Shoes</button>
       </div>
+
     </div>
 
+    <!-- PRODUCTS -->
+
     <div class="products" id="productContainer"></div>
+
+    <div class="no-product" id="noProduct">
+      No Products Found 😢
+    </div>
 
   </div>
 
   <script>
+
     const products = [
       {
-        name: 'Wireless Headphones',
-        category: 'Electronics',
-        price: '$120',
-        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop',
-        desc: 'Premium sound quality with modern wireless technology.'
+        name:"Wireless Headphones",
+        category:"Electronics",
+        price:"$120",
+        image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e"
       },
+
       {
-        name: 'Smart Watch',
-        category: 'Electronics',
-        price: '$180',
-        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop',
-        desc: 'Track fitness, calls, and notifications in style.'
+        name:"Smart Watch",
+        category:"Electronics",
+        price:"$90",
+        image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30"
       },
+
       {
-        name: 'Casual Hoodie',
-        category: 'Fashion',
-        price: '$60',
-        image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop',
-        desc: 'Comfortable and stylish hoodie for daily wear.'
+        name:"Denim Jacket",
+        category:"Fashion",
+        price:"$70",
+        image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"
       },
+
       {
-        name: 'Running Shoes',
-        category: 'Shoes',
-        price: '$90',
-        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop',
-        desc: 'Lightweight running shoes with modern comfort.'
+        name:"White Sneakers",
+        category:"Shoes",
+        price:"$60",
+        image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"
       },
+
       {
-        name: 'Denim Jacket',
-        category: 'Fashion',
-        price: '$75',
-        image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop',
-        desc: 'Classic denim jacket with trendy design.'
+        name:"Running Shoes",
+        category:"Shoes",
+        price:"$95",
+        image:"https://images.unsplash.com/photo-1549298916-b41d501d3772"
       },
+
       {
-        name: 'Sneakers',
-        category: 'Shoes',
-        price: '$110',
-        image: 'https://images.unsplash.com/photo-1543508282-6319a3e2621f?q=80&w=1200&auto=format&fit=crop',
-        desc: 'Everyday sneakers with premium finishing.'
+        name:"Black T-Shirt",
+        category:"Fashion",
+        price:"$35",
+        image:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b"
       }
     ];
 
-    const productContainer = document.getElementById('productContainer');
-    const searchInput = document.getElementById('searchInput');
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productContainer = document.getElementById("productContainer");
+    const searchInput = document.getElementById("searchInput");
+    const buttons = document.querySelectorAll(".filter-btn");
+    const noProduct = document.getElementById("noProduct");
 
-    let currentCategory = 'All';
+    let currentCategory = "All";
 
-    function displayProducts(items) {
-      productContainer.innerHTML = '';
+    // DISPLAY PRODUCTS
 
-      if(items.length === 0) {
-        productContainer.innerHTML = `<div class="no-result">No products found 😔</div>`;
-        return;
+    function displayProducts(items){
+
+      productContainer.innerHTML = "";
+
+      if(items.length === 0){
+        noProduct.style.display = "block";
+      }
+      else{
+        noProduct.style.display = "none";
       }
 
       items.forEach(product => {
-        productContainer.innerHTML += `
-          <div class="card">
-            <img src="${product.image}" alt="${product.name}">
-            <div class="card-content">
-              <span class="category">${product.category}</span>
-              <h3>${product.name}</h3>
+
+        const card = document.createElement("div");
+
+        card.classList.add("card");
+
+        card.innerHTML = `
+        
+          <img src="${product.image}" alt="${product.name}">
+
+          <div class="card-content">
+
+            <span class="category">${product.category}</span>
+
+            <h3>${product.name}</h3>
+
+            <p>
+              Premium quality product with modern design and amazing comfort.
+            </p>
+
+            <div class="bottom">
+
               <div class="price">${product.price}</div>
-              <p class="desc">${product.desc}</p>
+
+              <button class="buy-btn">Buy Now</button>
+
             </div>
+
           </div>
+
         `;
+
+        productContainer.appendChild(card);
+
       });
+
     }
 
-    function filterProducts() {
+    // FILTER FUNCTION
+
+    function filterProducts(){
+
       const searchValue = searchInput.value.toLowerCase();
 
-      const filtered = products.filter(product => {
-        const matchCategory = currentCategory === 'All' || product.category === currentCategory;
+      const filteredProducts = products.filter(product => {
 
-        const matchSearch = product.name.toLowerCase().includes(searchValue);
+        const categoryMatch =
+          currentCategory === "All" ||
+          product.category === currentCategory;
 
-        return matchCategory && matchSearch;
+        const searchMatch =
+          product.name.toLowerCase().includes(searchValue);
+
+        return categoryMatch && searchMatch;
+
       });
 
-      displayProducts(filtered);
+      displayProducts(filteredProducts);
+
     }
 
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        document.querySelector('.filter-btn.active').classList.remove('active');
-        button.classList.add('active');
+    // BUTTON FILTER
+
+    buttons.forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        buttons.forEach(btn => btn.classList.remove("active"));
+
+        button.classList.add("active");
 
         currentCategory = button.dataset.category;
+
         filterProducts();
+
       });
+
     });
 
-    searchInput.addEventListener('input', filterProducts);
+    // SEARCH FILTER
+
+    searchInput.addEventListener("input", filterProducts);
+
+    // INITIAL DISPLAY
 
     displayProducts(products);
+
   </script>
 
 </body>
